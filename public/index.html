@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="description" content="Simple remainder racing game. Created by Jaden Balogh." />
+    <title>Remainder Racer</title>
+    <script src="index.js"></script>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Remainder Racer</h1>
+    <p>Be the first to enter the correct remainder to win!</p>
+    <b>Enter a username:</b> <input id="name" type="text" placeholder="Your username..." />
+    <hr />
+    <p><b id="winner"></b> won the race! <b id="lastA"></b> <b>mod</b> <b id="lastN"></b> = <b id="lastAnswer"></b></p>
+    <h3>Find the remainder of...</h3>
+    <h2 id="question"></h2>
+    <form>
+      <input id="answer" type="number" autofocus />
+      <input id="submit" type="submit" />
+    </form>
+    <h2 id="feedback"></h2>
+  </body>
+</html>
