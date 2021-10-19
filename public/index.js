@@ -5,6 +5,7 @@ window.onload = function () {
     document.getElementById('lastN').innerHTML = data.lastN;
     document.getElementById('winner').innerHTML = data.winner;
     document.getElementById('lastAnswer').innerHTML = data.lastAnswer;
+    document.getElementById('feedback').innerHTML = '';
   }
 
   // Initialize page
@@ -34,6 +35,7 @@ window.onload = function () {
     answerReq.onload = function () {
       let correct = this.responseText === 'true';
       document.getElementById('feedback').innerHTML = correct ? 'Correct!' : 'Wrong!';
+      document.getElementById('winner').style['color'] = correct ? 'green' : 'red';
     };
     answerReq.open('GET', `/answer?answer=${answer}&name=${name}`);
     answerReq.send();
