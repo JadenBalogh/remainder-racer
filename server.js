@@ -42,6 +42,13 @@ function updateQuestion() {
   });
 }
 
+function updateClients() {
+  let count = JSON.stringify({ clients: clients.length });
+  clients.forEach((client) => {
+    client.response.write(`event: message\ndata: ${count}\n\n`);
+  });
+}
+
 /// ROUTES
 
 app.use(express.static('public'));
@@ -85,10 +92,12 @@ app.get('/events', (req, res) => {
     response: res,
   };
   clients.push(newClient);
+  updateClients();
 
   // Remove client on close
   req.on('close', () => {
     clients = clients.filter((client) => client.id !== clientId);
+    updateClients();
   });
 });
 

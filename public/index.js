@@ -8,6 +8,10 @@ window.onload = function () {
     document.getElementById('feedback').innerHTML = '';
   }
 
+  function updateClients(data) {
+    document.getElementById('clients').innerHTML = data.clients;
+  }
+
   // Initialize page
   const questionReq = new XMLHttpRequest();
   questionReq.onload = function () {
@@ -19,10 +23,18 @@ window.onload = function () {
 
   // Receive updates
   const events = new EventSource('/events');
-  events.onmessage = (event) => {
+  events.addEventListener('message', (event) => {
+    let json = JSON.parse(event.data);
+    if (json.question) {
+      updateQuestion(json);
+    } else {
+      updateClients(json);
+    }
+  });
+  events.addEventListener('clients', (event) => {
     let json = JSON.parse(event.data);
     updateQuestion(json);
-  };
+  });
 
   // Send answers
   document.getElementById('submit').addEventListener('click', function (event) {
