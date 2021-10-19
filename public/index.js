@@ -6,6 +6,9 @@ window.onload = function () {
     document.getElementById('winner').innerHTML = data.winner;
     document.getElementById('lastAnswer').innerHTML = data.lastAnswer;
     document.getElementById('feedback').innerHTML = '';
+
+    let isWinner = data.winner == document.getElementById('name').value;
+    document.getElementById('winner').style['color'] = isWinner ? 'green' : 'red';
   }
 
   function updateClients(data) {
@@ -47,7 +50,6 @@ window.onload = function () {
     answerReq.onload = function () {
       let correct = this.responseText === 'true';
       document.getElementById('feedback').innerHTML = correct ? 'Correct!' : 'Wrong!';
-      document.getElementById('winner').style['color'] = correct ? 'green' : 'red';
     };
     answerReq.open('GET', `/answer?answer=${answer}&name=${name}`);
     answerReq.send();
