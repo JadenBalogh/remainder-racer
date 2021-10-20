@@ -1,8 +1,7 @@
 window.onload = function () {
   function updateQuestion(data) {
     document.getElementById('question').innerHTML = data.question;
-    document.getElementById('lastA').innerHTML = data.lastA;
-    document.getElementById('lastN').innerHTML = data.lastN;
+    document.getElementById('lastQuestion').innerHTML = data.lastQuestion;
     document.getElementById('winner').innerHTML = data.winner;
     document.getElementById('lastAnswer').innerHTML = data.lastAnswer;
     document.getElementById('feedback').innerHTML = '';
