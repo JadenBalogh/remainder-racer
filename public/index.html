@@ -10,15 +10,25 @@
       body {
         text-align: center;
       }
+      #footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+      }
     </style>
   </head>
   <body>
     <h1>Remainder Racer</h1>
     <p>Be the first to enter the correct remainder to win!</p>
     <p>There are currently <b id="clients"></b> players online.</p>
-    <b>Enter a username:</b> <input id="name" type="text" placeholder="Your username..." />
+    <br />
+    <b>Enter a username:</b> <input id="name" type="text" placeholder="Your username..." maxlength="40" />
+    <br />
+    <br />
     <hr />
     <p id="result"><b id="winner"></b> won the race! <b id="lastQuestion"></b> = <b id="lastAnswer"></b></p>
+    <br />
     <h3>Find the remainder of...</h3>
     <h2 id="question"></h2>
     <form>
@@ -26,5 +36,10 @@
       <input id="submit" type="submit" />
     </form>
     <h2 id="feedback"></h2>
+    <div id="footer">
+      <p>
+        Created by <a href="https://github.com/JadenBalogh" target="_blank">Jaden Balogh</a>, 2021. All rights reserved.
+      </p>
+    </div>
   </body>
 </html>

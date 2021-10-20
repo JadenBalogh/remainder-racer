@@ -1,4 +1,5 @@
 import express from 'express';
+import { check, validationResult } from 'express-validator';
 import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -74,7 +75,8 @@ function updateQuestion() {
 
   // Generate new question
   let numTerms = randRange(MIN_TERMS, MAX_TERMS);
-  a = [], k = [];
+  a = [];
+  k = [];
   n = randRange(MIN_N, MAX_N);
   for (let i = 0; i < numTerms; i++) {
     let isBigK = Math.random() < K_CHANCE;
@@ -113,7 +115,7 @@ app.get('/question', (req, res) => {
   res.send(`${getPageData()}`);
 });
 
-app.get('/answer', (req, res) => {
+app.get('/answer', [check('name').escape()], (req, res) => {
   let answer = req.query.answer;
   let correctAnswer = getAnswer();
   if (answer == correctAnswer) {
