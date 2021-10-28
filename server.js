@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 const port = process.env.PORT;
 
+const UPDATE_INTERVAL = 20; // in seconds
 const MIN_TERMS = 1;
 const MAX_TERMS = 4;
 const MIN_A = 2;
@@ -102,6 +103,12 @@ function updateClients() {
     client.response.write(`event: message\ndata: ${count}\n\n`);
   });
 }
+
+/// LOOPS
+
+var updateLoop = null;
+clearInterval(updateLoop);
+updateLoop = setInterval(updateClients, UPDATE_INTERVAL * 1000);
 
 /// ROUTES
 
